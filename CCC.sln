@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Garage", "Garage\Garage.vcxproj", "{56442672-C6AA-477F-9B6C-5FF3ED2E944B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCC", "CCC\CCC.vcxproj", "{F6F9EFBC-3769-48BE-8969-AD9E0FA97B47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6F9EFBC-3769-48BE-8969-AD9E0FA97B47}.Debug|x64.ActiveCfg = Debug|x64
+		{F6F9EFBC-3769-48BE-8969-AD9E0FA97B47}.Debug|x64.Build.0 = Debug|x64
+		{F6F9EFBC-3769-48BE-8969-AD9E0FA97B47}.Release|x64.ActiveCfg = Release|x64
+		{F6F9EFBC-3769-48BE-8969-AD9E0FA97B47}.Release|x64.Build.0 = Release|x64
+		{56442672-C6AA-477F-9B6C-5FF3ED2E944B}.Debug|x64.ActiveCfg = Debug|x64
+		{56442672-C6AA-477F-9B6C-5FF3ED2E944B}.Debug|x64.Build.0 = Debug|x64
+		{56442672-C6AA-477F-9B6C-5FF3ED2E944B}.Release|x64.ActiveCfg = Release|x64
+		{56442672-C6AA-477F-9B6C-5FF3ED2E944B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21BED49D-8915-4B4D-B56F-EAD60B733EDF}
+	EndGlobalSection
+EndGlobal
