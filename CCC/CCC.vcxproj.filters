@@ -16,10 +16,16 @@
     <ClInclude Include="src\CCC\EntryPoint.h">
       <Filter>CCC</Filter>
     </ClInclude>
+    <ClInclude Include="src\CCC\Log.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CCC\Application.cpp">
       <Filter>CCC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCC\Log.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
