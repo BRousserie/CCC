@@ -4,6 +4,9 @@
     <Filter Include="CCC">
       <UniqueIdentifier>{CED8870B-3AE2-877C-C35D-9E7C2F66937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CCC\Events">
+      <UniqueIdentifier>{F2D0B361-DE88-F5AE-4790-CE0A3367909F}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CCC.h" />
@@ -16,8 +19,20 @@
     <ClInclude Include="src\CCC\EntryPoint.h">
       <Filter>CCC</Filter>
     </ClInclude>
+    <ClInclude Include="src\CCC\Events\ApplicationEvent.h">
+      <Filter>CCC\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CCC\Events\Event.h">
+      <Filter>CCC\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CCC\Events\KeyEvent.h">
+      <Filter>CCC\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CCC\Events\MouseEvent.h">
+      <Filter>CCC\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\CCC\Log.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>CCC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -25,7 +40,7 @@
       <Filter>CCC</Filter>
     </ClCompile>
     <ClCompile Include="src\CCC\Log.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>CCC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

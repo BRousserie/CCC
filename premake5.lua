@@ -25,6 +25,7 @@ project "CCC"
 	
 	includedirs
 	{ 
+		"%{prj.name}/src",
 		"CCC/vendor/spdlog/include" 
 	}
 
