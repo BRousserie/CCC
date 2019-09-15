@@ -7,7 +7,7 @@
 namespace CCC
 {
 
-	class Log
+	class CCC_API Log
 	{
 	public:
 		static void Init();

@@ -73,7 +73,8 @@ project "Garage"
 	
     files 
 	{
-		"%{prj.name}/src/**.h", "%{prj.name}/src/**.cpp" 
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp" 
 	}
 	
 	includedirs
