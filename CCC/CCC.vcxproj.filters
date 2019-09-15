@@ -34,6 +34,7 @@
     <ClInclude Include="src\CCC\Log.h">
       <Filter>CCC</Filter>
     </ClInclude>
+    <ClInclude Include="src\CCCpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CCC\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\CCC\Log.cpp">
       <Filter>CCC</Filter>
     </ClCompile>
+    <ClCompile Include="src\CCCpch.cpp" />
   </ItemGroup>
 </Project>

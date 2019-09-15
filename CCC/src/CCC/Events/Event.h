@@ -1,8 +1,6 @@
 #pragma once
 
 #include "CCC/Core.h"
-#include <string>
-#include <functional>
 
 namespace CCC
 {

@@ -18,15 +18,19 @@ project "CCC"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
+	pchheader "CCCpch.h"
+	pchsource "CCC/src/CCCpch.cpp"
+	
     files 
 	{
-		"%{prj.name}/src/**.h", "%{prj.name}/src/**.cpp" 
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp" 
 	}
 	
 	includedirs
 	{ 
 		"%{prj.name}/src",
-		"CCC/vendor/spdlog/include" 
+		"%{prj.name}/vendor/spdlog/include" 
 	}
 
 	filter "system:windows"
@@ -74,7 +78,7 @@ project "Garage"
 	
 	includedirs
 	{ 
-		"%{prj.name}/vendor/spdlog/include",
+		"CCC/vendor/spdlog/include",
 		"CCC/src"
 	}
 	
