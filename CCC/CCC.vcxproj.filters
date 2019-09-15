@@ -35,6 +35,8 @@
       <Filter>CCC</Filter>
     </ClInclude>
     <ClInclude Include="src\CCCpch.h" />
+    <ClInclude Include="src\CCC\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CCC\Application.cpp">
@@ -44,5 +46,6 @@
       <Filter>CCC</Filter>
     </ClCompile>
     <ClCompile Include="src\CCCpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

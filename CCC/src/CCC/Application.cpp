@@ -5,6 +5,7 @@ namespace CCC {
 
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 
@@ -14,7 +15,10 @@ namespace CCC {
 
 	void CCC::Application::Run()
 	{
-		while (true);
+		while (true)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 
 }
