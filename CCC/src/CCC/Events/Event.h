@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CCCpch.h"
 #include "CCC/Core.h"
 
 namespace CCC
@@ -59,7 +60,7 @@ namespace CCC
 		template<typename T>
 		bool Dispatch(EventFn<T> func)
 		{
-			if (m_Event.GetEventTyp() == T::GetStaticType())
+			if (m_Event.GetEventType() == T::GetStaticType())
 			{
 				m_Event.m_Handled = func(*(T*)&m_Event);
 				return true;

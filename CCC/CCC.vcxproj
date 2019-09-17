@@ -158,8 +158,8 @@
     <ClInclude Include="src\CCC\Events\KeyEvent.h" />
     <ClInclude Include="src\CCC\Events\MouseEvent.h" />
     <ClInclude Include="src\CCC\Log.h" />
-    <ClInclude Include="src\CCCpch.h" />
     <ClInclude Include="src\CCC\Window.h" />
+    <ClInclude Include="src\CCCpch.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
