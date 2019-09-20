@@ -2,8 +2,8 @@
 
 #include "CCCpch.h"
 
-#include "CCC/Core.h"
-#include "CCC/Events/Event.h"
+#include "Core.h"
+#include "Events/Event.h"
 
 namespace CCC 
 {
