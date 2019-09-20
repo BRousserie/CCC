@@ -37,6 +37,12 @@
     <ClInclude Include="src\CCC\Events\MouseEvent.h">
       <Filter>CCC\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\CCC\Layer.h">
+      <Filter>CCC</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CCC\LayerStack.h">
+      <Filter>CCC</Filter>
+    </ClInclude>
     <ClInclude Include="src\CCC\Log.h">
       <Filter>CCC</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CCC\Application.cpp">
+      <Filter>CCC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCC\Layer.cpp">
+      <Filter>CCC</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCC\LayerStack.cpp">
       <Filter>CCC</Filter>
     </ClCompile>
     <ClCompile Include="src\CCC\Log.cpp">

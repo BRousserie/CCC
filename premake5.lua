@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "CCC/vendor/GLFW/include"
+IncludeDir["Glad"] = "CCC/vendor/Glad/include"
 
 include "CCC/vendor/GLFW"
+include "CCC/vendor/Glad"
 
 project "CCC"
 	location "CCC"
@@ -36,12 +38,14 @@ project "CCC"
 	{ 
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 	
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -53,7 +57,8 @@ project "CCC"
 		defines
 		{
 			"CCC_PLATFORM_WINDOWS",
-			"CCC_BUILD_DLL"
+			"CCC_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 		
 		postbuildcommands
