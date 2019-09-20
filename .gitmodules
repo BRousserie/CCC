@@ -4,3 +4,6 @@
 [submodule "CCC/vendor/GLFW"]
 	path = CCC/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
+[submodule "CCC/vendor/imgui"]
+	path = CCC/vendor/imgui
+	url = https://github.com/TheCherno/imgui
