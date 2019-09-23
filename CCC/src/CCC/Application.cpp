@@ -1,6 +1,9 @@
 #include "CCCpch.h"
 #include "Application.h"
 
+#include "Input.h"
+#include <glad\glad.h>
+
 namespace CCC {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -34,10 +37,16 @@ namespace CCC {
 	{
 		while (m_Running)
 		{
-			m_Window->OnUpdate();
+			glClearColor(0.1, 0.2, 0.8, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_Window->OnUpdate();
+
+			auto[x, y] = Input::GetMousePos();
+			CCC_CORE_TRACE("{0}, {1}", x, y);
 		}
 	}
 
