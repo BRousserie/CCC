@@ -1,7 +1,7 @@
 #include "CCCpch.h"
 #include "ImGuiLayer.h"
 
-#include "CCC/vendor/imgui/imgui.h"
+#include <imgui.h>
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
 #include "CCC/Application.h"
 

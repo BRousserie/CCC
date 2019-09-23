@@ -14,7 +14,8 @@ outputdir = "%{cfg.buildcfg}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "CCC/vendor/GLFW/include"
 IncludeDir["Glad"] = "CCC/vendor/Glad/include"
-IncludeDir["ImGui"] = "CCC/vendor/imgui"
+IncludeDir["imgui"] = "CCC/vendor/imgui"
+IncludeDir["glm"] = "CCC/vendor/glm"
 
 group "Dependencies"
 	include "CCC/vendor/GLFW"
@@ -37,7 +38,9 @@ project "CCC"
     files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp" 
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",		
+		"%{prj.name}/vendor/glm/glm/**.inl",		
 	}
 	
 	includedirs
@@ -46,7 +49,8 @@ project "CCC"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 	
 	links
@@ -108,7 +112,8 @@ project "Garage"
 	includedirs
 	{ 
 		"CCC/vendor/spdlog/include",
-		"CCC/src"
+		"CCC/src",
+		"%{IncludeDir.glm}"
 	}
 	
 	links
