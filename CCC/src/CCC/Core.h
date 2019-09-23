@@ -10,6 +10,10 @@
 	#error CCC only supports Windows
 #endif
 
+#ifdef CCC_DEBUG
+	#define CCC_ENABLE_ASSERTS
+#endif
+
 #ifdef CCC_ENABLE_ASSERTS
 	#define CCC_ASSERT(x, ...) { if(!(x)) {CCC_ERROR("Assertion failed : {0}", __VA_ARGS__); __debugbreak(); } }
 	#define CCC_CORE_ASSERT(x, ...) { if(!(x)) { CCC_CORE_ERROR("Assertion Failed : {0}", __VA_ARGS__); __debugbreak(); } }

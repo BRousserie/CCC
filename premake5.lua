@@ -1,5 +1,6 @@
 workspace "CCC"
 	architecture "x64"
+	startproject "Garage"
 	
     configurations 
 	{ 
@@ -15,14 +16,17 @@ IncludeDir["GLFW"] = "CCC/vendor/GLFW/include"
 IncludeDir["Glad"] = "CCC/vendor/Glad/include"
 IncludeDir["ImGui"] = "CCC/vendor/imgui"
 
-include "CCC/vendor/GLFW"
-include "CCC/vendor/Glad"
-include "CCC/vendor/imgui"
+group "Dependencies"
+	include "CCC/vendor/GLFW"
+	include "CCC/vendor/Glad"
+	include "CCC/vendor/imgui"
 
+group ""
 project "CCC"
 	location "CCC"
     kind "SharedLib"
     language "C++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -55,7 +59,6 @@ project "CCC"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -67,19 +70,22 @@ project "CCC"
 		
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Garage")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Garage/\"")
 		}
 		
     filter "configurations:Debug"
         defines "CCC_DEBUG"
+		runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "CCC_RELEASE"
+		runtime "Release"
         optimize "On"
 		
 	filter "configurations:Dist"
 		defines "CCC_DIST"
+		runtime "Release"
 		optimize "On"
 	
 	
@@ -88,6 +94,7 @@ project "Garage"
 	location "Garage"
     kind "ConsoleApp"
     language "C++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -111,7 +118,6 @@ project "Garage"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -121,13 +127,16 @@ project "Garage"
 		
     filter "configurations:Debug"
         defines { "CCC_DEBUG" }
+		runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines { "CCC_RELEASE" }
+		runtime "Release"
         optimize "On"
 		
 	filter "configurations:Dist"
 		defines { "CCC_DIST" }
+		runtime "Release"
 		optimize "On"
 	
