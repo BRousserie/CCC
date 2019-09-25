@@ -6,6 +6,8 @@
 #include "LayerStack.h"
 #include "Window.h"
 
+#include  "CCC/ImGui/ImGuiLayer.h"
+
 namespace CCC
 {
 	class CCC_API Application
@@ -27,6 +29,7 @@ namespace CCC
 		bool OnWindowClosed(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

@@ -103,7 +103,7 @@ namespace CCC
 				KeyTypedEvent event(keycode);
 				data.EventCallback(event);
 			});
-
+		
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -122,7 +122,7 @@ namespace CCC
 				}
 				}
 			});
-
+			
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);

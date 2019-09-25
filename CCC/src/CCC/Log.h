@@ -31,8 +31,8 @@ namespace CCC
 #define CCC_CORE_FATAL(...) ::CCC::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client log macros
-#define CCC_CLIENT_TRACE(...) ::CCC::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define CCC_CLIENT_INFO(...)  ::CCC::Log::GetClientLogger()->info(__VA_ARGS__)
-#define CCC_CLIENT_WARN(...)  ::CCC::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define CCC_CLIENT_ERROR(...) ::CCC::Log::GetClientLogger()->error(__VA_ARGS__)
-#define CCC_CLIENT_FATAL(...) ::CCC::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define CCC_TRACE(...) ::CCC::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define CCC_INFO(...)  ::CCC::Log::GetClientLogger()->info(__VA_ARGS__)
+#define CCC_WARN(...)  ::CCC::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define CCC_ERROR(...) ::CCC::Log::GetClientLogger()->error(__VA_ARGS__)
+#define CCC_FATAL(...) ::CCC::Log::GetClientLogger()->fatal(__VA_ARGS__)

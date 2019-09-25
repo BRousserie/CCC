@@ -113,6 +113,7 @@ project "Garage"
 	{ 
 		"CCC/vendor/spdlog/include",
 		"CCC/src",
+		"CCC/vendor",
 		"%{IncludeDir.glm}"
 	}
 	
