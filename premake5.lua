@@ -25,9 +25,10 @@ group "Dependencies"
 group ""
 project "CCC"
 	location "CCC"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -41,6 +42,11 @@ project "CCC"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",		
 		"%{prj.name}/vendor/glm/glm/**.inl",		
+	}
+	
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 	
 	includedirs
@@ -62,7 +68,6 @@ project "CCC"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
@@ -72,25 +77,20 @@ project "CCC"
 			"GLFW_INCLUDE_NONE"
 		}
 		
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Garage/\"")
-		}
-		
     filter "configurations:Debug"
         defines "CCC_DEBUG"
 		runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "CCC_RELEASE"
 		runtime "Release"
-        optimize "On"
+        optimize "on"
 		
 	filter "configurations:Dist"
 		defines "CCC_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 	
 	
 	
@@ -98,7 +98,8 @@ project "Garage"
 	location "Garage"
     kind "ConsoleApp"
     language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -134,15 +135,15 @@ project "Garage"
     filter "configurations:Debug"
         defines { "CCC_DEBUG" }
 		runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines { "CCC_RELEASE" }
 		runtime "Release"
-        optimize "On"
+        optimize "on"
 		
 	filter "configurations:Dist"
 		defines { "CCC_DIST" }
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 	
