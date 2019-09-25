@@ -37,7 +37,10 @@ public:
 class Garage : public CCC::Application
 {
 public:
-	Garage() {}
+	Garage()
+	{
+		PushLayer(new ExampleLayer());
+	}
 
 	~Garage() {}
 
