@@ -1,19 +1,22 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace CCC
 {
-
-	enum class RendererAPI
-	{
-		None = 0, OpenGL = 1
-	};
 
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
+		inline static void BeginScene() {}
+		inline static void EndScene() {}
 
-	private:
-		static RendererAPI s_RendererAPI;
+		inline static void Submit(const std::shared_ptr<VertexArray>& vertexArray)
+		{
+			vertexArray->Bind();
+			RenderCommand::DrawIndexed(vertexArray);
+		}
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }

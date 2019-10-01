@@ -1,34 +1,13 @@
 #include "CCCpch.h"
 #include "Application.h"
-#include <glad\glad.h>
+#include "Renderer/Renderer.h"
+
 
 namespace CCC {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
-
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-
-		case CCC::ShaderDataType::Float:    return GL_FLOAT;
-		case CCC::ShaderDataType::Float2:   return GL_FLOAT;
-		case CCC::ShaderDataType::Float3:   return GL_FLOAT;
-		case CCC::ShaderDataType::Float4:   return GL_FLOAT;
-		case CCC::ShaderDataType::Mat3:     return GL_FLOAT;
-		case CCC::ShaderDataType::Mat4:     return GL_FLOAT;
-		case CCC::ShaderDataType::Int:      return GL_INT;
-		case CCC::ShaderDataType::Int2:     return GL_INT;
-		case CCC::ShaderDataType::Int3:     return GL_INT;
-		case CCC::ShaderDataType::Int4:     return GL_INT;
-		case CCC::ShaderDataType::Bool:     return GL_BOOL;
-		}
-
-		CCC_CORE_ASSERT(false, "Unknown ShaderDataType!");
-		return 0;
-	}
 
 	Application::Application()
 	{
@@ -169,16 +148,20 @@ namespace CCC {
 	{
 		while (m_Running)
 		{
-			glClearColor(0.1, 0.2, 0.3, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({0.1, 0.2, 0.3, 1});
+			RenderCommand::Clear();
 
+			
+			Renderer::BeginScene();
+			
 			m_coloredOnPositionShader->Bind();
-			m_SquareVA->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
+			Renderer::Submit(m_SquareVA);
+			
 			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
+
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
