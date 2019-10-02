@@ -8,14 +8,9 @@
 
 #include "CCC/ImGui/ImGuiLayer.h"
 
-#include "CCC/Renderer/Shader.h"
-#include "CCC/Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Renderer/OrthographicCamera.h"
-
 namespace CCC
 {
-	class CCC_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -37,13 +32,6 @@ namespace CCC
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<Shader> m_coloredOnPositionShader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
