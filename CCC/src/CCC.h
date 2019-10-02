@@ -8,6 +8,9 @@
 #include "CCC/Layer.h"
 #include "CCC/Log.h"
 
+// -- Core -----
+#include "CCC/Core/Timestep.h"
+
 // -- Inputs -----
 #include "CCC/Input.h"
 #include "CCC/KeyCodes.h"

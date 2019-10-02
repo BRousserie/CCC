@@ -129,22 +129,24 @@ public:
 #pragma endregion
 		
 	}
-	void OnUpdate() override
+	void OnUpdate(CCC::Timestep ts) override
 	{
+		CCC_TRACE("Delta time : {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+		
 		if(CCC::Input::IsKeyPressed(CCC_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		else if (CCC::Input::IsKeyPressed(CCC_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 		
 		if (CCC::Input::IsKeyPressed(CCC_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (CCC::Input::IsKeyPressed(CCC_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 		
 		if (CCC::Input::IsKeyPressed(CCC_KEY_Q))
-			m_CameraRotation += m_CameraRotateSpeed;
+			m_CameraRotation += m_CameraRotateSpeed * ts;
 		if (CCC::Input::IsKeyPressed(CCC_KEY_D))
-			m_CameraRotation -= m_CameraRotateSpeed;
+			m_CameraRotation -= m_CameraRotateSpeed * ts;
 		
 		CCC::RenderCommand::SetClearColor({ 0.1, 0.2, 0.3, 1 });
 		CCC::RenderCommand::Clear();
@@ -176,8 +178,8 @@ private:
 	CCC::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation = 0.0f;
-	float m_CameraMoveSpeed = 0.1f;
-	float m_CameraRotateSpeed = 2.0f;
+	float m_CameraMoveSpeed = 5.0f;
+	float m_CameraRotateSpeed = 90.0f;
 };
 
 class Garage : public CCC::Application

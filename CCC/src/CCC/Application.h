@@ -5,6 +5,7 @@
 #include "Events\ApplicationEvent.h"
 #include "LayerStack.h"
 #include "Window.h"
+#include "CCC/Core/Timestep.h"
 
 #include "CCC/ImGui/ImGuiLayer.h"
 
@@ -28,10 +29,13 @@ namespace CCC
 	private:
 		bool OnWindowClosed(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		Timestep m_Timestep;
+		float m_LastFrameTime = 0.0f;
 
 		static Application* s_Instance;
 	};
