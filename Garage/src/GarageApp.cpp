@@ -98,7 +98,7 @@ public:
 		squareIB.reset(CCC::IndexBuffer::Create(sqrIndices, sizeof(sqrIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
-		std::string coloredOnPositionVertexSrc = R"(
+		std::string flatColorVertexSrc = R"(
 			#version 330 core
 
 			layout (location = 0) in vec3 a_Position;
@@ -116,21 +116,23 @@ public:
 	
 		)";
 
-		std::string coloredOnPositionFragmentSrc = R"(
+		std::string flatColorFragmentSrc = R"(
 			#version 330 core
 
 			layout (location = 0) out vec4 color;
 
 			in vec3 v_Position;
+
+			uniform vec4 u_Color;
 		
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = u_Color;
 			}
 	
 		)";
 
-		m_coloredOnPositionShader.reset(new CCC::Shader(coloredOnPositionVertexSrc, coloredOnPositionFragmentSrc));
+		m_flatColorShader.reset(new CCC::Shader(flatColorVertexSrc, flatColorFragmentSrc));
 #pragma endregion
 
 	}
@@ -162,13 +164,20 @@ public:
 		CCC::Renderer::BeginScene(m_Camera);
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
+		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				CCC::Renderer::Submit(m_coloredOnPositionShader, m_SquareVA, transform);
+				if (x % 2 != y%2)
+					m_flatColorShader->UploadUniformFloat4("u_Color", redColor);
+				else
+					m_flatColorShader->UploadUniformFloat4("u_Color", blueColor);
+				CCC::Renderer::Submit(m_flatColorShader, m_SquareVA, transform);
 			}
 		}
 		//CCC::Renderer::Submit(m_Shader, m_VertexArray);
@@ -187,7 +196,7 @@ private:
 	std::shared_ptr<CCC::Shader> m_Shader;
 	std::shared_ptr<CCC::VertexArray> m_VertexArray;
 
-	std::shared_ptr<CCC::Shader> m_coloredOnPositionShader;
+	std::shared_ptr<CCC::Shader> m_flatColorShader;
 	std::shared_ptr<CCC::VertexArray> m_SquareVA;
 
 	CCC::OrthographicCamera m_Camera;
