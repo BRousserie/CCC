@@ -8,7 +8,7 @@ class ExampleLayer : public CCC::Layer
 {
 public:
 	ExampleLayer()
-		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), Layer("Example"), m_CameraPosition(0.0f), m_SquarePosition(0.0f)
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), Layer("Example"), m_CameraPosition(0.0f)
 	{
 
 #pragma region Triangle
@@ -153,16 +153,6 @@ public:
 		if (CCC::Input::IsKeyPressed(CCC_KEY_D))
 			m_CameraRotation -= m_CameraRotateSpeed * ts;
 
-		if (CCC::Input::IsKeyPressed(CCC_KEY_J))
-			m_SquarePosition.x -= m_SquareMoveSpeed * ts;
-		else if (CCC::Input::IsKeyPressed(CCC_KEY_L))
-			m_SquarePosition.x += m_SquareMoveSpeed * ts;
-
-		if (CCC::Input::IsKeyPressed(CCC_KEY_I))
-			m_SquarePosition.y += m_SquareMoveSpeed * ts;
-		else if (CCC::Input::IsKeyPressed(CCC_KEY_K))
-			m_SquarePosition.y -= m_SquareMoveSpeed * ts;
-
 		CCC::RenderCommand::SetClearColor({ 0.1, 0.2, 0.3, 1 });
 		CCC::RenderCommand::Clear();
 
@@ -171,7 +161,7 @@ public:
 
 		CCC::Renderer::BeginScene(m_Camera);
 
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -205,9 +195,6 @@ private:
 	float m_CameraRotation = 0.0f;
 	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotateSpeed = 90.0f;
-
-	glm::vec3 m_SquarePosition;
-	float m_SquareMoveSpeed = 2.0f;
 };
 
 class Garage : public CCC::Application
