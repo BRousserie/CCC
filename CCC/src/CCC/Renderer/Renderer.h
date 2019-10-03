@@ -2,7 +2,7 @@
 
 #include "RenderCommand.h"
 #include "OrthographicCamera.h"
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "Shader.h"
 
 namespace CCC
 {

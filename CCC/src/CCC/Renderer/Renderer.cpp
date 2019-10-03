@@ -1,5 +1,6 @@
 #include "CCCpch.h"
 #include "Renderer.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace CCC
 {
