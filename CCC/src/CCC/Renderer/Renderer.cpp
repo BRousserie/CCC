@@ -3,5 +3,5 @@
 
 namespace CCC
 {
-	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
+	Renderer::SceneData* Renderer::s_SceneData = new Renderer::SceneData;
 }

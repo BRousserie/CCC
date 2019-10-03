@@ -1,4 +1,5 @@
 #include <CCC.h>
+#include <CCC/Core.h>
 
 #include "imgui/imgui.h"
 
@@ -22,7 +23,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<CCC::VertexBuffer> triangleVertexBuffer;
+		CCC::Ref<CCC::VertexBuffer> triangleVertexBuffer;
 		triangleVertexBuffer.reset(CCC::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		CCC::BufferLayout layout = {
@@ -33,7 +34,7 @@ public:
 		m_VertexArray->AddVertexBuffer(triangleVertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<CCC::IndexBuffer> triangleIndexBuffer;
+		CCC::Ref<CCC::IndexBuffer> triangleIndexBuffer;
 		triangleIndexBuffer.reset(CCC::IndexBuffer::Create(
 			indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(triangleIndexBuffer);
@@ -86,7 +87,7 @@ public:
 			 0.5f,  0.5f, 0.0f,
 			-0.5f,  0.5f, 0.0f,
 		};
-		std::shared_ptr<CCC::VertexBuffer> squareVB;
+		CCC::Ref<CCC::VertexBuffer> squareVB;
 		squareVB.reset(CCC::VertexBuffer::Create(sqrVertices, sizeof(sqrVertices)));
 
 		squareVB->SetLayout({
@@ -95,7 +96,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t sqrIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<CCC::IndexBuffer> squareIB;
+		CCC::Ref<CCC::IndexBuffer> squareIB;
 		squareIB.reset(CCC::IndexBuffer::Create(sqrIndices, sizeof(sqrIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -194,11 +195,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<CCC::Shader> m_Shader;
-	std::shared_ptr<CCC::VertexArray> m_VertexArray;
+	CCC::Ref<CCC::Shader> m_Shader;
+	CCC::Ref<CCC::VertexArray> m_VertexArray;
 
-	std::shared_ptr<CCC::Shader> m_flatColorShader;
-	std::shared_ptr<CCC::VertexArray> m_SquareVA;
+	CCC::Ref<CCC::Shader> m_flatColorShader, m_textureShader;
+	CCC::Ref<CCC::VertexArray> m_SquareVA;
 
 	CCC::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
