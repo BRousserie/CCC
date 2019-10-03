@@ -7,6 +7,8 @@ namespace CCC
 	class OpenGLRendererAPI : public RendererAPI
 	{
 	public:
+		virtual void Init();
+		
 		virtual void SetClearColor(const glm::vec4& color);
 		virtual void Clear();
 
