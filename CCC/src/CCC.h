@@ -25,6 +25,7 @@
 
 #include "CCC/Renderer/Buffer.h"
 #include "CCC/Renderer/Shader.h"
+#include "CCC/Renderer/Texture.h"
 #include "CCC/Renderer/VertexArray.h"
 
 #include "CCC/Renderer/OrthographicCamera.h"

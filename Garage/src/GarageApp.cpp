@@ -81,17 +81,18 @@ public:
 
 #pragma region Square
 		m_SquareVA.reset(CCC::VertexArray::Create());
-		float sqrVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+		float sqrVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		CCC::Ref<CCC::VertexBuffer> squareVB;
 		squareVB.reset(CCC::VertexBuffer::Create(sqrVertices, sizeof(sqrVertices)));
 
 		squareVB->SetLayout({
-			{ CCC::ShaderDataType::Float3, "a_Position" }
+			{ CCC::ShaderDataType::Float3, "a_Position" },
+			{ CCC::ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -135,8 +136,52 @@ public:
 		)";
 
 		m_flatColorShader.reset(CCC::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
-#pragma endregion
 
+
+		
+		std::string textureVertexSrc = R"(
+			#version 330 core
+
+			layout (location = 0) in vec3 a_Position;
+			layout (location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+		
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+	
+		)";
+
+		std::string textureFragmentSrc = R"(
+			#version 330 core
+
+			layout (location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+		
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+	
+		)";
+
+		m_TextureShader.reset(CCC::Shader::Create(textureVertexSrc, textureFragmentSrc));
+
+		m_Texture = CCC::Texture2D::Create("assets/textures/Checkerboard.png");
+		
+		std::dynamic_pointer_cast<CCC::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<CCC::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		
+#pragma endregion
 	}
 	void OnUpdate(CCC::Timestep ts) override
 	{
@@ -179,6 +224,10 @@ public:
 				CCC::Renderer::Submit(m_flatColorShader, m_SquareVA, transform);
 			}
 		}
+
+		m_Texture->Bind();
+		CCC::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		//CCC::Renderer::Submit(m_Shader, m_VertexArray);
 		CCC::Renderer::EndScene();
 	}
@@ -198,8 +247,10 @@ private:
 	CCC::Ref<CCC::Shader> m_Shader;
 	CCC::Ref<CCC::VertexArray> m_VertexArray;
 
-	CCC::Ref<CCC::Shader> m_flatColorShader, m_textureShader;
+	CCC::Ref<CCC::Shader> m_flatColorShader, m_TextureShader;
 	CCC::Ref<CCC::VertexArray> m_SquareVA;
+
+	CCC::Ref<CCC::Texture2D> m_Texture;
 
 	CCC::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

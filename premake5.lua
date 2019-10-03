@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "CCC/vendor/GLFW/include"
 IncludeDir["Glad"] = "CCC/vendor/Glad/include"
 IncludeDir["imgui"] = "CCC/vendor/imgui"
 IncludeDir["glm"] = "CCC/vendor/glm"
+IncludeDir["stb_image"] = "CCC/vendor/stb_image"
 
 group "Dependencies"
 	include "CCC/vendor/GLFW"
@@ -40,6 +41,8 @@ project "CCC"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",		
 		"%{prj.name}/vendor/glm/glm/**.inl",		
 	}
@@ -56,7 +59,8 @@ project "CCC"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 	
 	links
