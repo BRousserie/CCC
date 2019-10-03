@@ -66,6 +66,8 @@ public:
 		squareIB.reset(CCC::IndexBuffer::Create(sqrIndices, sizeof(sqrIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
+#pragma region flatColorShader
+
 		std::string flatColorVertexSrc = R"(
 			#version 330 core
 
@@ -100,21 +102,20 @@ public:
 	
 		)";
 
-		m_flatColorShader.reset(CCC::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
+		m_flatColorShader = CCC::Shader::Create("flatColor", flatColorVertexSrc, flatColorFragmentSrc);
 
+#pragma endregion
 
-		
-		
-
-		m_TextureShader.reset(CCC::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = CCC::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = CCC::Texture2D::Create("assets/textures/ChernoLogo.png");
 		
-		std::dynamic_pointer_cast<CCC::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<CCC::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<CCC::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<CCC::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 		
 #pragma endregion
+		
 	}
 	void OnUpdate(CCC::Timestep ts) override
 	{
@@ -158,11 +159,13 @@ public:
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		CCC::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		CCC::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		
 		m_ChernoLogoTexture->Bind();
-		CCC::Renderer::Submit(m_TextureShader, m_SquareVA, 	glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		CCC::Renderer::Submit(textureShader, m_SquareVA, 	glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		//CCC::Renderer::Submit(m_Shader, m_VertexArray);
 		CCC::Renderer::EndScene();
@@ -180,10 +183,12 @@ public:
 	}
 
 private:
+	CCC::ShaderLibrary m_ShaderLibrary;
+	
 	CCC::Ref<CCC::Shader> m_Shader;
 	CCC::Ref<CCC::VertexArray> m_VertexArray;
 
-	CCC::Ref<CCC::Shader> m_flatColorShader, m_TextureShader;
+	CCC::Ref<CCC::Shader> m_flatColorShader;
 	CCC::Ref<CCC::VertexArray> m_SquareVA;
 
 	CCC::Ref<CCC::Texture2D> m_Texture, m_ChernoLogoTexture;

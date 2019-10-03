@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CCC/Renderer/VertexArray.h"
-#include <glad/glad.h>
 
 namespace CCC
 {
@@ -23,7 +22,8 @@ namespace CCC
 	private:
 		std::vector<Ref<VertexBuffer>> m_VertexBuffers;
 		Ref<IndexBuffer> m_IndexBuffer;
-		GLuint m_RendererID;
+		uint32_t m_RendererID;
+		uint32_t m_VertexBufferIndex = 0;
 	};
 
 }

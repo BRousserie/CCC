@@ -8,6 +8,11 @@ workspace "CCC"
 		"Release", 
 		"Dist" 
 	}
+	
+	flags
+	{
+		"MultiProcessorCompile"
+	}
 
 outputdir = "%{cfg.buildcfg}"
 
