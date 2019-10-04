@@ -6,12 +6,13 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "CCC/OrthographicCameraController.h"
 
 class ExampleLayer : public CCC::Layer
 {
 public:
 	ExampleLayer()
-		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), Layer("Example"), m_CameraPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
 
 #pragma region Triangle
@@ -119,30 +120,12 @@ public:
 	}
 	void OnUpdate(CCC::Timestep ts) override
 	{
-		CCC_TRACE("Delta time : {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
-
-		if (CCC::Input::IsKeyPressed(CCC_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (CCC::Input::IsKeyPressed(CCC_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-		if (CCC::Input::IsKeyPressed(CCC_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (CCC::Input::IsKeyPressed(CCC_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (CCC::Input::IsKeyPressed(CCC_KEY_Q))
-			m_CameraRotation += m_CameraRotateSpeed * ts;
-		if (CCC::Input::IsKeyPressed(CCC_KEY_D))
-			m_CameraRotation -= m_CameraRotateSpeed * ts;
+		m_CameraController.OnUpdate(ts);
 
 		CCC::RenderCommand::SetClearColor({ 0.1, 0.2, 0.3, 1 });
 		CCC::RenderCommand::Clear();
-
-		m_Camera.SetRotation(m_CameraRotation);
-		m_Camera.SetPosition({ m_CameraPosition });
-
-		CCC::Renderer::BeginScene(m_Camera);
+		
+		CCC::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -178,8 +161,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(CCC::Event& event) override
+	void OnEvent(CCC::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
 	}
 
 private:
@@ -193,11 +177,7 @@ private:
 
 	CCC::Ref<CCC::Texture2D> m_Texture, m_ChernoLogoTexture;
 
-	CCC::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraRotation = 0.0f;
-	float m_CameraMoveSpeed = 5.0f;
-	float m_CameraRotateSpeed = 90.0f;
+	CCC::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
