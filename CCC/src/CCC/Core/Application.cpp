@@ -1,6 +1,6 @@
 #include "CCCpch.h"
 #include "Application.h"
-#include "Renderer/Renderer.h"
+#include "CCC/Renderer/Renderer.h"
 #include <GLFW\glfw3.h>
 
 namespace CCC {

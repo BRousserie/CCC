@@ -1,20 +1,20 @@
 #pragma once
 
 // -- Entry Point -----
-#include "CCC/EntryPoint.h"
+#include "CCC/Core/EntryPoint.h"
 
 // -- General -----
-#include "CCC/Application.h"
-#include "CCC/Layer.h"
-#include "CCC/Log.h"
+#include "CCC/Core/Application.h"
+#include "CCC/Core/Layer.h"
+#include "CCC/Core/Log.h"
 
 // -- Core -----
 #include "CCC/Core/Timestep.h"
 
 // -- Inputs -----
-#include "CCC/Input.h"
-#include "CCC/KeyCodes.h"
-#include "CCC/MouseButtonCodes.h"
+#include "CCC/Core/Input.h"
+#include "CCC/Core/KeyCodes.h"
+#include "CCC/Core/MouseButtonCodes.h"
 
 // -- ImGui -----
 #include "CCC/ImGui/ImGuiLayer.h"
@@ -29,4 +29,4 @@
 #include "CCC/Renderer/VertexArray.h"
 
 #include "CCC/Renderer/OrthographicCamera.h"
-#include "CCC/OrthographicCameraController.h"
+#include "CCC/Renderer/OrthographicCameraController.h"

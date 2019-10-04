@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core.h"
-#include "Events\Event.h"
-#include "Events\ApplicationEvent.h"
+#include "CCC/Events/Event.h"
+#include "CCC/Events/ApplicationEvent.h"
 #include "LayerStack.h"
 #include "Window.h"
 #include "CCC/Core/Timestep.h"

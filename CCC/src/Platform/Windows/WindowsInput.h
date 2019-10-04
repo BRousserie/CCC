@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CCC/Input.h"
+#include "CCC/Core/Input.h"
 
 namespace CCC
 {

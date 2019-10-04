@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CCCpch.h"
-#include "CCC/Core.h"
+#include "CCC/Core/Core.h"
 
 namespace CCC
 {

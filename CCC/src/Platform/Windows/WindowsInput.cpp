@@ -1,6 +1,6 @@
 #include "CCCpch.h"
 #include "WindowsInput.h"
-#include "CCC/Application.h"
+#include "CCC/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

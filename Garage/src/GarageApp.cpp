@@ -6,7 +6,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "CCC/OrthographicCameraController.h"
+#include "CCC/Renderer/OrthographicCameraController.h"
 
 class ExampleLayer : public CCC::Layer
 {

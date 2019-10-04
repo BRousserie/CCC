@@ -1,7 +1,7 @@
 #include "CCCpch.h"
 #include "OrthographicCameraController.h"
-#include "CCC/KeyCodes.h"
-#include "CCC/Input.h"
+#include "CCC/Core/KeyCodes.h"
+#include "CCC/Core/Input.h"
 
 namespace CCC
 {

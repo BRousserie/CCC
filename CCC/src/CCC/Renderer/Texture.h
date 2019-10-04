@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CCC/Core.h"
+#include "CCC/Core/Core.h"
 #include <string>
 
 namespace CCC

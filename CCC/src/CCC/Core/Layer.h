@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Core.h"
-#include "Events/Event.h"
-#include "Core/Timestep.h"
+#include "CCC/Events/Event.h"
+#include "CCC/Core/Timestep.h"
 
 namespace CCC
 {
